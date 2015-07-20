@@ -3,6 +3,22 @@
 source auth.sh
 source api.sh
 
+help() {
+  echo
+  echo '  Usage: init.sh [options]'
+  echo
+  echo '  Options:'
+  echo
+  echo '    -h, --help             output usage information'
+  echo '    -u, --user  <string>   sets the custom user name'
+  echo '    -p, --pass  <string>   sets the custom password'
+  echo '    -r, --repo  <string>   sets the name of repository'
+  echo '    -f, --func  <string>   calls specified function'
+  echo '    -l, --label <string>   sets the label name'
+  echo '    -c, --color <string>   sets the labels color'
+  echo
+}
+
 while [ $# -gt 0 ]; do
   option="$1"
 
@@ -26,19 +42,7 @@ while [ $# -gt 0 ]; do
     COLOR="$2"; shift;;
 
   -h|--help)
-    echo
-    echo '  Usage: init.sh [options]'
-    echo
-    echo '  Options:'
-    echo
-    echo '    -h, --help             output usage information'
-    echo '    -u, --user  <string>   sets the custom user name'
-    echo '    -p, --pass  <string>   sets the custom password'
-    echo '    -r, --repo  <string>   sets the name of repository'
-    echo '    -f, --func  <string>   calls specified function'
-    echo '    -l, --label <string>   sets the label name'
-    echo '    -c, --color <string>   sets the labels color'
-    echo
+    help
     exit;;
   esac
 
@@ -46,7 +50,7 @@ while [ $# -gt 0 ]; do
 done
 
 if [ -z $FUNC ]; then
-  echo 'Try to specify the name of the function'
+  help
   exit 1
 fi
 
